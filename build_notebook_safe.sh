@@ -164,7 +164,7 @@ EOF
 
 # --- Assemble the notebook ---
 
-base_notebook_json=$(cat notebooks/OSF_1109_all_sample_3M_1charR.ipynb)
+base_notebook_json=$(cat notebooks/original_notebook.ipynb)
 part1_cells=$(echo "$base_notebook_json" | jq '.cells[0:6]')
 did_model_cells=$(echo "$base_notebook_json" | jq '.cells[6:]')
 
@@ -188,7 +188,7 @@ final_cells_array=$(jq -n '
 --argjson viz_code "$(cat viz_code.json)" \
 )
 
-echo "$base_notebook_json" | jq --argjson final_cells "$final_cells_array" '.cells = $final_cells' > notebooks/OSF_1109_all_sample_3M_1charR.ipynb
+echo "$base_notebook_json" | jq --argjson final_cells "$final_cells_array" '.cells = $final_cells' > notebooks/enhanced_analysis.ipynb
 
 # --- Clean up temporary files ---
 rm *.json
